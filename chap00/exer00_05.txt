@@ -1,0 +1,10 @@
+Page 7
+
+Is this a valid program?  Why or why not?
+
+    #include <iostream>
+    int main()    std:: cout << "Hello, world!" << std:endl;
+
+--------------------------------------------------------------------------------
+
+No, this is not valid because we need braces after the "int main()" declaration.

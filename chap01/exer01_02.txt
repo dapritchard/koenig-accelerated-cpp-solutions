@@ -1,0 +1,11 @@
+Page 15
+
+Are the following definitions valid?  Why or why not?
+
+    const std::string exclam = "!";
+    const std::string message = "Hello" + ", world" + exclam;
+
+--------------------------------------------------------------------------------
+
+No, this code fragment is invalid because we try to use the concatenation
+operator "+" on two string literals which is not allowed.

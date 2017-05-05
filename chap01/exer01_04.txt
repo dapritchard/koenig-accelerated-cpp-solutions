@@ -1,0 +1,26 @@
+Page 16
+
+Is the following program valid?  What if we change }} to };} in the third line
+from the end?
+
+    #include <iostream>
+    #include <string>
+
+    int main() {
+        {
+            const std::string s = "a string";
+            std::cout << s << std::endl;
+        
+            {
+                const std::string s = "another string";
+                std::cout << s << std::endl;
+            }
+        }
+
+        return 0;
+    }
+
+--------------------------------------------------------------------------------
+
+The program compiles and executes properly both without and with the extra
+semicolon.  This demonstrates that nested scopes are allowed in C++.

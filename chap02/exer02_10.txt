@@ -1,0 +1,21 @@
+Page 34
+
+Explain each of the uses of std:: in the following program.
+
+    int main()
+    {
+        int k = 0;
+        while (k != 10) {       // invariant: we have written k asterisks so far
+            using std::cout;
+            cout << "*";
+            ++k;
+        }
+        std::cout << std::endl;  // std:: is required here
+        return 0;
+    }
+
+--------------------------------------------------------------------------------
+
+The first use of std:: declares cout to be a synonym for std::cout.  The second
+use declared the namespace of cout to be std, and the third use declared the
+namespace of endl to be std.

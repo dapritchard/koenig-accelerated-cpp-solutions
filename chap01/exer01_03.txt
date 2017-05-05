@@ -1,0 +1,26 @@
+Page 16
+
+Is the following program valid?  If so, what does it do?  If not, why not?
+
+    #include <iostream>
+    #include <string>
+
+    int main() {
+        {
+            const std::string s = "a string";
+            std::cout << s << std::endl;
+        }
+
+        {
+            const std::string s = "another string";
+            std::cout << s << std::endl;
+        }
+
+        return 0;
+    }
+
+--------------------------------------------------------------------------------
+
+Yes the program is valid.  A const std::string variable named s is declared
+twice in this code, but since declarations are in different scopes it is not a
+problem.

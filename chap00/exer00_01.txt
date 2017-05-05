@@ -1,0 +1,10 @@
+Page 7
+
+What does the following statement do?
+
+    3 + 4;
+
+--------------------------------------------------------------------------------
+
+The + operator takes the int values 3 and 4 as operands and returns 7 as a
+result.

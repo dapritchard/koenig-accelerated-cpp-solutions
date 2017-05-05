@@ -1,0 +1,11 @@
+Page 7
+
+Is this a valid program?  Why or why not?
+
+    #include <iostream>
+    int main()    {{{{{{ std::cout << "Hello, world!" << std;:endl; }}}}}}
+
+--------------------------------------------------------------------------------
+
+This is a valid program.  Each pair of braces delimits a scope which is nested
+inside of each increasingly wider scope.

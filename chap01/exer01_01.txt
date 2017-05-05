@@ -1,0 +1,11 @@
+Page 15
+
+Are the following definitions valid?  Why or why not?
+
+    const std::string hello = "Hello";
+    const std::string message = hello + ", world" + "!";
+
+--------------------------------------------------------------------------------
+
+Yes this is a valid code fragment.  In the first line we set the value of the
+hello, and in the second line we use it to construct the value of message.

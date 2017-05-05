@@ -1,0 +1,14 @@
+Page 34
+
+What does the following code do?
+
+    int i = 0;
+    while (i < 10) {
+        i += 1;
+        std::cout << i << std::endl;
+    }
+
+--------------------------------------------------------------------------------
+
+The code writes the numbers 1 through 10 one line at-a-time to stdout, and
+flushing the buffer after each line.

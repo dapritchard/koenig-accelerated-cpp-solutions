@@ -1,0 +1,14 @@
+Page 16
+
+What does the following program do if, when it asks you for input, you type two
+names (for example, Samuel Beckett)?
+
+--------------------------------------------------------------------------------
+
+The program uses the first word from the input for the first std::cin call, and
+uses the second word from the input for the second std::cin call.  Thus the
+output for the program is:
+
+    What is your name?
+    Hello, Samuel
+    And what is yours? Hello, Beckett; nice to meet you too!
