@@ -2,6 +2,10 @@
 
 # program location
 exer_loc="./exer02_03"
+if [[ ! -x "$exer_loc" ]]; then
+    >&2 echo "error: no executable file ${exer_loc#./} exists"
+    exit 1
+fi
 
 # tracks whether all of the tests are successful; change to nonzero if any tests
 # fail
