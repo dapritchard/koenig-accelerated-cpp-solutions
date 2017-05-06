@@ -49,7 +49,7 @@ exercises).
 
   * To compile all of the programs in a directory, simply run **make** without
     any arguments while in the directory.  For every exercise in the directory
-    that had a program written for it, an executable is created with the form
+    that has a program written for it, an executable is created with the form
     exerXX\_YY.  So for example, in chapter 0 there were programming exercises
     for problems 0, 2, 3, 4, 9, and 10.  So after running make, the directory
     chap00 will include the executable files exer00\_00, exer00\_02, exer00\_03,
