@@ -1,0 +1,17 @@
+Page 49
+
+Suppose we wish to find the median of a collection of values.  Assume that we
+have read some of the values so far, and that we have no idea how many values
+remain to be read.  Prove that we cannot afford to discard any of the values
+that we have read.  Hint: One proof strategy is to assume that we can discard a
+value, and then find values for the unread - and therefore unknown - part of our
+collection that would cause the median to be the value that we discarded.
+
+--------------------------------------------------------------------------------
+
+Suppose that we consider discarding the k-th largest value out of a total of n
+values.  Let us call this value x.  Further suppose that we then read in (n - k)
+values smaller then x and (k - 1) larger than x.  Then there are (n - 1) values
+no greater than x and (n - 1) values no less than x, so it follows that x is the
+median.  Thus we are unable to discard any values because there is always a set
+of values that could cause the discarded value to be the median.
