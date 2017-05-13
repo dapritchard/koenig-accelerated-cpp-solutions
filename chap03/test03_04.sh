@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # program location
-exer_loc="exer03_03"
+exer_loc="exer03_04"
 
 # process command line arguments
 . ../testing/process_args.sh
@@ -14,27 +14,26 @@ exer_loc="exer03_03"
 
 # construct tests --------------------------------------------------------------
 
-outstring="Please enter a list of words followed by an EOF character:  Word counts:
-------------"
+prompt='Please enter a list of words followed by an EOF character:  '
+shortest='The length of the shortest string was:  '
+longest='The length of the longest string was:   '
+err_msg='error: no words entered as input'
 
 testname[arr_idx]='data of size 0'
 input[arr_idx]=''
-target[arr_idx]="$outstring"
+target[arr_idx]="$prompt$err_msg"
 ((arr_idx++))
 
 testname[arr_idx]='data of size 1'
 input[arr_idx]='C++'
-target[arr_idx]="$outstring
-C++		1"
+target[arr_idx]="$prompt${shortest}3
+${longest}3"
 ((arr_idx++))
 
-testname[arr_idx]='multiple repeating words'
-input[arr_idx]='this is this is a a a test is is is'
-target[arr_idx]="$outstring
-this		2
-is		5
-a		3
-test		1"
+testname[arr_idx]='multiple words'
+input[arr_idx]='The Free Software Foundation'
+target[arr_idx]="$prompt${shortest}3
+${longest}10"
 ((arr_idx++))
 
 

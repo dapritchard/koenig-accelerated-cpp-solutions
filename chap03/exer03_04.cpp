@@ -23,6 +23,7 @@ int main() {
     }
     else {
 	std::cout << "error: no words entered as input\n";
+	return 1;
     }
 
     /* each iteration reads a word from stdin and compares its size with the
