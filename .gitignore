@@ -31,6 +31,11 @@ chap03/exer03_05
 chap03/exer03_06
 
 # chapter 04
-chap04/exer04_0{2..7}
+chap04/exer04_02
+chap04/exer04_03
+chap04/exer04_04
+chap04/exer04_05
+chap04/exer04_06
+chap04/exer04_07
 utest_calc_nchars
 utest_calc_seq
