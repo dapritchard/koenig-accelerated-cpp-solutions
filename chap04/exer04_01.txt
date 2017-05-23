@@ -1,0 +1,29 @@
+Page 73
+
+We noted in §4.2.3/65 that it is essential that the argument types in a call to
+max match exactly. Will the following code work? If there is a problem, how
+would you fix it?
+
+    int maxlen;
+    Student_info s;
+    max(s.name.size(), maxlen);
+
+--------------------------------------------------------------------------------
+
+On page 65, it says that max's arguments must be of the same type.  On my
+platform, trying to compile a program containing the above segment results in
+the following compiler error:
+
+    no matching function for call to
+    ‘max(std::__cxx11::basic_string<char>::size_type, int&)’
+    
+There is another problem: neither maxlen nor s are explicitely initialized.  It
+is not clear without further investigation what values, if any, these values
+will be initialized to.
+
+To fix the problems, simply change the first line of the code to
+
+    std::string::size_type maxlen;
+
+and presumably wait until both maxlen and s have been assigned meaningful values
+before calling max().

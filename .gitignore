@@ -1,3 +1,5 @@
+*.o
+
 # chapter 00
 chap00/exer00_00
 chap00/exer00_02
@@ -27,3 +29,8 @@ chap03/exer03_03
 chap03/exer03_04
 chap03/exer03_05
 chap03/exer03_06
+
+# chapter 04
+chap04/exer04_0{2..7}
+utest_calc_nchars
+utest_calc_seq
