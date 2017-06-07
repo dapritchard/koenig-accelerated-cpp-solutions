@@ -4,28 +4,56 @@
 exer_loc="exer04_04"
 
 # process command line arguments
-. ../testing/process_args.sh
-
-# declare variables to store testing data
-. ../testing/declare_vars.sh
+. ../testing/system_test.sh
 
 
 
 
 # construct tests --------------------------------------------------------------
 
-# # recreate exercise using Bash syntax
-# . print_squares.sh
-# out=$(print_squares 999)
+# program is designed to print the suquence from -1 to 4 in increments of 0.125,
+# and their squares
+target='-1.000     1.000000
+-0.875     0.765625
+-0.750     0.562500
+-0.625     0.390625
+-0.500     0.250000
+-0.375     0.140625
+-0.250     0.062500
+-0.125     0.015625
+ 0.000     0.000000
+ 0.125     0.015625
+ 0.250     0.062500
+ 0.375     0.140625
+ 0.500     0.250000
+ 0.625     0.390625
+ 0.750     0.562500
+ 0.875     0.765625
+ 1.000     1.000000
+ 1.125     1.265625
+ 1.250     1.562500
+ 1.375     1.890625
+ 1.500     2.250000
+ 1.625     2.640625
+ 1.750     3.062500
+ 1.875     3.515625
+ 2.000     4.000000
+ 2.125     4.515625
+ 2.250     5.062500
+ 2.375     5.640625
+ 2.500     6.250000
+ 2.625     6.890625
+ 2.750     7.562500
+ 2.875     8.265625
+ 3.000     9.000000
+ 3.125     9.765625
+ 3.250    10.562500
+ 3.375    11.390625
+ 3.500    12.250000
+ 3.625    13.140625
+ 3.750    14.062500
+ 3.875    15.015625
+ 4.000    16.000000'
+actual=$(./$exer_loc)
 
-# testname[arr_idx]='exercise specificiations'
-# input[arr_idx]=''
-# target[arr_idx]="$out"
-# ((arr_idx++))
-
-
-
-
-# # conduct tests ----------------------------------------------------------------
-
-. ../testing/conduct_tests.sh
+ST_ASSERT_EQUAL "$target" "$actual"
