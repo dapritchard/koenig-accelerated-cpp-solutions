@@ -43,7 +43,7 @@ done
 
 
 
-# integration test functions ---------------------------------------------------
+# system test functions --------------------------------------------------------
 
 # Tests program standard output against a target.  If the output of the program
 # does not match the target standard output then the global variable
@@ -100,7 +100,6 @@ ST_ASSERT_EQUAL_MESSAGE() {
     fi
 
     (( num_test++ ))
-
 }
 
 
@@ -109,7 +108,3 @@ ST_ASSERT_EQUAL_MESSAGE() {
 ST_ASSERT_EQUAL() {
     ST_ASSERT_EQUAL_MESSAGE "test $num_test" "$1" "$2"
 }
-
-
-# ST_ASSERT_SUCCESS_MESSAGE() {
-# }

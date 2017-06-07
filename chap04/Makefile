@@ -61,13 +61,25 @@ clobber :
 
 exer04_03 : exer04_03.o calc_nchars.o
 
+exer04_04 : exer04_04.o calc_nchars.o calc_seq.o
+
+calc_nchars.o : calc_nchars.h
+
 utest_calc_nchars : utest_calc_nchars.o calc_nchars.o $(TESTDIR)/UnitTest.o
+
+utest_ndig_before_after : utest_ndig_before_after.o calc_nchars.o $(TESTDIR)/UnitTest.o
+
+utest_calc_width_prec : utest_calc_width_prec.o calc_seq.o calc_nchars.o $(TESTDIR)/UnitTest.o
 
 utest_calc_seq : utest_calc_seq.o calc_seq.o $(TESTDIR)/UnitTest.o
 
 utest_calc_nchars.o : $(TESTDIR)/UnitTest.h calc_nchars.h
 
+utest_ndig_before_after.o : $(TESTDIR)/UnitTest.h calc_nchars.h
+
 utest_calc_seq.o : $(TESTDIR)/UnitTest.h calc_seq.h
+
+utest_calc_width_prec.o : $(TESTDIR)/UnitTest.h calc_seq.h calc_nchars.h
 
 
 
@@ -88,7 +100,7 @@ $(RUN_PREFIX)$(UNIT_PREFIX)% : $(UNIT_PREFIX)% %.o
 	@printf $< && ./$< > /dev/null && printf ":    pass\n" \
 		|| printf ":    ** test failure **\n"
 
-# for debugging the makefile.  print out a variable name by running `make
-# print-varname'
+# for debugging the makefile.  Print out a variable name `varname' by running
+# `make print-varname'
 print-%:
 	@echo '$*=$($*)'

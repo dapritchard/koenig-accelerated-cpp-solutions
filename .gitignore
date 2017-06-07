@@ -38,3 +38,5 @@ chap04/exer04_06
 chap04/exer04_07
 utest_calc_nchars
 utest_calc_seq
+utest_calc_width_prec
+utest_ndig_before_after
