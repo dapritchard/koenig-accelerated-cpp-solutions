@@ -96,7 +96,7 @@ $(TEST_PREFIX)% : $(TEST_PREFIX)%.sh $(EXER_PREFIX)%
 	@printf $< && ./$< > /dev/null && printf ":    pass\n" \
 		|| printf ":    ** test failure **\n"
 
-$(RUN_PREFIX)$(UNIT_PREFIX)% : $(UNIT_PREFIX)% %.o
+$(RUN_PREFIX)$(UNIT_PREFIX)% : $(UNIT_PREFIX)%
 	@printf $< && ./$< > /dev/null && printf ":    pass\n" \
 		|| printf ":    ** test failure **\n"
 

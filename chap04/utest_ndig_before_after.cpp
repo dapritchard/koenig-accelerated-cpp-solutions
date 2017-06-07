@@ -1,5 +1,3 @@
-#include <vector>
-#include <string>
 #include "../testing/UnitTest.h"
 #include "calc_nchars.h"
 

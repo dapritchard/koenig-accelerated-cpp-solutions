@@ -57,3 +57,7 @@ target='-1.000     1.000000
 actual=$(./$exer_loc)
 
 ST_ASSERT_EQUAL "$target" "$actual"
+
+
+# exit number is number of failed tests
+exit $(( num_test - num_test_success ))

@@ -3,6 +3,9 @@
 
 #define DEC_BUF_SIZE 2048
 
+#include <vector>
+#include <string>
+
 int calc_nchars(int val);
 void ndig_before_after(const char *char_repr, int *n_before, int *n_after);
 void calc_width_prec(const std::vector<double> orig_vals,

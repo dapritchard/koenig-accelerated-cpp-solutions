@@ -15,5 +15,8 @@ exer_loc="exer04_02"
 . print_squares.sh
 target=$(print_squares 100)
 actual=$(./$exer_loc)
-
 ST_ASSERT_EQUAL "$target" "$actual"
+
+
+# exit number is number of failed tests
+exit $(( num_test - num_test_success ))
