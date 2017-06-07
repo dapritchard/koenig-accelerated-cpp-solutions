@@ -3,29 +3,16 @@
 # program location
 exer_loc="exer04_03"
 
-# process command line arguments
-. ../testing/process_args.sh
-
-# declare variables to store testing data
-. ../testing/declare_vars.sh
+# process command line arguments and define testing functions
+. ../testing/system_test.sh
 
 
 
 
-# construct tests --------------------------------------------------------------
+# conduct tests ----------------------------------------------------------------
 
 # recreate exercise using Bash syntax
 . print_squares.sh
-out=$(print_squares 999)
-
-testname[arr_idx]='exercise specificiations'
-input[arr_idx]=''
-target[arr_idx]="$out"
-((arr_idx++))
-
-
-
-
-# # conduct tests ----------------------------------------------------------------
-
-. ../testing/conduct_tests.sh
+target=$(print_squares 999)
+actual=$(./$exer_loc)
+ST_ASSERT_EQUAL "$target" "$actual"

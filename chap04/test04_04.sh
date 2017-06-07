@@ -3,13 +3,13 @@
 # program location
 exer_loc="exer04_04"
 
-# process command line arguments
+# process command line arguments and define testing functions
 . ../testing/system_test.sh
 
 
 
 
-# construct tests --------------------------------------------------------------
+# conduct tests ----------------------------------------------------------------
 
 # program is designed to print the suquence from -1 to 4 in increments of 0.125,
 # and their squares
