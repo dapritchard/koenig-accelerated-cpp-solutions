@@ -1,7 +1,5 @@
-#include <iostream>
 #include <vector>
 #include <stdexcept>
-
 #include "../testing/UnitTest.h"
 #include "calc_seq.h"
 

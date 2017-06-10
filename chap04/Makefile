@@ -60,10 +60,23 @@ clobber :
 
 # lower-level build rules ------------------------------------------------------
 
+exer04_03.o : calc_nchars.h
 exer04_03 : exer04_03.o calc_nchars.o
+
+exer04_04.o : calc_nchars.h calc_seq.h
 exer04_04 : exer04_04.o calc_nchars.o calc_seq.o
 
+exer04_05.o : count_unique_in_stream.h
+exer04_05 : exer04_05.o count_unique_in_stream.o
+
+exer04_06.o : grade.h student_info.h
+exer04_06 : grade.o student_info.o median.o
+
+exer04_07.o : vec_dbl_ave.h
+exer04_07 : exer04_07.o vec_dbl_ave.o
+
 calc_nchars.o : calc_nchars.h
+
 utest_calc_nchars.o : $(TESTDIR)/UnitTest.h calc_nchars.h
 utest_calc_nchars : utest_calc_nchars.o calc_nchars.o $(TESTDIR)/UnitTest.o
 
@@ -75,6 +88,16 @@ utest_calc_width_prec : utest_calc_width_prec.o calc_seq.o calc_nchars.o $(TESTD
 
 utest_calc_seq.o : $(TESTDIR)/UnitTest.h calc_seq.h
 utest_calc_seq : utest_calc_seq.o calc_seq.o $(TESTDIR)/UnitTest.o
+
+utest_stream_to_words.o : $(TESTDIR)/UnitTest.h count_unique_in_stream.h
+utest_stream_to_words : utest_stream_to_words.o count_unique_in_stream.o $(TESTDIR)/UnitTest.o
+
+utest_n_unique.o : $(TESTDIR)/UnitTest.h count_unique_in_stream.h
+utest_n_unique : utest_n_unique.o count_unique_in_stream.o $(TESTDIR)/UnitTest.o
+
+utest_vec_dbl_ave.o : $(TESTDIR)/UnitTest.h vec_dbl_ave.h
+utest_vec_dbl_ave : vec_dbl_ave.o vec_dbl_ave.o $(TESTDIR)/UnitTest.o
+
 
 
 

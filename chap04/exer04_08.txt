@@ -1,0 +1,12 @@
+If the following code is legal, what can we infer about the return type of f?
+
+    double d = f()[n];
+
+--------------------------------------------------------------------------------
+
+Firstly, f() returns something for which the [ operator has meaning.  This could
+either be a pointer or an object for which [ has been defined.
+
+Secondly, the value of f()[n] must be something that can be converted to a type
+double.  This could either be another type of number such as an int or float, or
+an object for which a conversion to double has been defined.
