@@ -96,7 +96,7 @@ utest_n_unique.o : $(TESTDIR)/UnitTest.h count_unique_in_stream.h
 utest_n_unique : utest_n_unique.o count_unique_in_stream.o $(TESTDIR)/UnitTest.o
 
 utest_vec_dbl_ave.o : $(TESTDIR)/UnitTest.h vec_dbl_ave.h
-utest_vec_dbl_ave : vec_dbl_ave.o vec_dbl_ave.o $(TESTDIR)/UnitTest.o
+utest_vec_dbl_ave : utest_vec_dbl_ave.o vec_dbl_ave.o $(TESTDIR)/UnitTest.o
 
 
 

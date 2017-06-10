@@ -36,7 +36,23 @@ chap04/exer04_04
 chap04/exer04_05
 chap04/exer04_06
 chap04/exer04_07
-utest_calc_nchars
-utest_calc_seq
-utest_calc_width_prec
-utest_ndig_before_after
+chap04/utest_calc_nchars
+chap04/utest_calc_seq
+chap04/utest_calc_width_prec
+chap04/utest_ndig_before_after
+chap04/utest_n_unique
+chap04/utest_stream_to_words
+chap04/utest_vec_dbl_ave
+
+# chapter 05
+chap05/exer05_01
+chap05/exer05_02
+chap05/exer05_03
+chap05/exer05_04
+chap05/exer05_05
+chap05/exer05_06
+chap05/exer05_07
+chap05/exer05_08
+chap05/exer05_09
+chap05/exer05_10
+chap05/exer05_11
