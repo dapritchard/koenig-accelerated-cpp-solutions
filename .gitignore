@@ -46,8 +46,10 @@ chap04/utest_vec_dbl_ave
 
 # chapter 05
 chap05/exer05_01
-chap05/exer05_02
-chap05/exer05_03
+chap05/exer05_02_list
+chap05/exer05_02_vector
+chap05/exer05_03_list
+chap05/exer05_03_vector
 chap05/exer05_04
 chap05/exer05_05
 chap05/exer05_06
@@ -56,3 +58,9 @@ chap05/exer05_08
 chap05/exer05_09
 chap05/exer05_10
 chap05/exer05_11
+chap05/utest_centered
+chap05/utest_concatenate
+chap05/utest_max_phrase_len
+chap05/utest_rotations
+chap05/utest_stream_to_rotations
+chap05/utest_string_to_lower

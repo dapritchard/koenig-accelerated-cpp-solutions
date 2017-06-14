@@ -1,0 +1,14 @@
+Look again at the driver functions you wrote in the previous exercise.  Note
+that it is possible to write a driver that differs only in the declaration of
+the type for the data structure that holds the input file.  If your vector and
+list test drivers differ in any other way, rewrite them so that they differ only
+in this declaration.
+
+--------------------------------------------------------------------------------
+
+The program written for exercise 5-3, exer05_03.cpp, was written to satisfy this
+requirement.  It does so by using preprocessor conditionals in
+student_container.h to specify whether to use the list or the vector typedef.
+The other change that needed to be done was to create a macro which calls the
+appropriate sort function depending on the container type, which is also defined
+in student_container.h.
