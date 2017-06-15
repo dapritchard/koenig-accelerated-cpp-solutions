@@ -60,6 +60,7 @@ chap05/exer05_10
 chap05/exer05_11
 chap05/utest_centered
 chap05/utest_concatenate
+chap05/utest_extract_fails_resize
 chap05/utest_max_phrase_len
 chap05/utest_rotations
 chap05/utest_stream_to_rotations

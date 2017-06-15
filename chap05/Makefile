@@ -49,7 +49,7 @@ all : $(executables)
 # all of the builds needed to performing unit testing
 utest : $(unit_tests) $(executables)
 
-# run all unit tests
+# run all unit and system tests
 test : $(unit_targets) $(test_targets) 
 
 clean :
@@ -57,70 +57,6 @@ clean :
 
 clobber :
 	rm -f *.o $(executables) $(unit_tests)
-
-
-
-
-# lower-level build rules ------------------------------------------------------
-
-exer05_01.o : rotations.h
-exer05_01 : exer05_01.o rotations.o split.o
-
-exer05_02_list.o : grade.h student_info.h
-exer05_02_list : exer05_02_list.o grade.o student_info.o fails_list.o median.o
-
-exer05_02_vector.o : exer05_02_vector.cpp grade.h student_info.h
-exer05_02_vector : exer05_02_vector.o grade.o student_info.o fails_vector.o median.o
-
-exer05_03_list.o : grade.h student_info.h student_container.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -DLIST_CONTAINER_ -c -o exer05_03_list.o exer05_03.cpp
-exer05_03_list : exer05_03_list.o grade.o student_info.o fails_list.o median.o
-
-exer05_03_vector.o : grade.h student_info.h student_container.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o exer05_03_vector.o exer05_03.cpp
-exer05_03_vector : exer05_03_vector.o grade.o student_info.o fails_vector.o median.o
-
-exer05_05.o : centered_picture.h
-exer05_05 : exer05_05_list.o centered_picture.o
-
-fails_vector.o : grade.h student_info.h
-
-fails_list.o : grade.h student_info.h
-
-grade.o : student_info.h
-
-rotations.o : rotations.h split.h
-
-student_info.o : student_info.h
-
-utest_concatenate.o : $(TESTDIR)/UnitTest.h rotations.h
-utest_concatenate : utest_concatenate.o rotations.o $(TESTDIR)/UnitTest.o
-
-utest_rotations.o : rotations.h  $(TESTDIR)/UnitTest.h
-utest_rotations : utest_rotations.o rotations.o $(TESTDIR)/UnitTest.o
-
-utest_stream_to_rotations.o : rotations.h $(TESTDIR)/UnitTest.h
-utest_stream_to_rotations : utest_stream_to_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
-
-utest_max_phrase_len.o : rotations.h $(TESTDIR)/UnitTest.h
-utest_max_phrase_len : utest_max_phrase_len.o rotations.o split.o $(TESTDIR)/UnitTest.o
-
-utest_string_to_lower.o : rotations.h $(TESTDIR)/UnitTest.h
-utest_string_to_lower : utest_string_to_lower.o rotations.o split.o $(TESTDIR)/UnitTest.o
-
-utest_centered.o : CXXFLAGS += -std=c++11
-utest_centered.o : utest_centered.cpp centered_picture.h $(INCDIR)/cppunit/TestCase.h
-
-# utest_centered.o : utest_centered.cpp centered_picture.h $(INCDIR)/cppunit/TestCase.h
-# 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -c -o utest_centered.o utest_centered.cpp
-
-utest_centered : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_centered : LDLIBS := -lcppunit
-utest_centered : utest_centered.o centered_picture.o
-
-# utest_centered : utest_centered.o centered_picture.o
-# 	$(CXX)  -L$(LIBDIR) $(RPATH) -o utest_centered \
-# 	utest_centered.o centered_picture.o -lcppunit
 
 
 
@@ -145,3 +81,80 @@ $(RUN_PREFIX)$(UNIT_PREFIX)% : $(UNIT_PREFIX)%
 # `make print-varname'
 print-%:
 	@echo '$*=$($*)'
+
+
+
+
+
+# lower-level build rules ------------------------------------------------------
+
+exer05_01.o : rotations.h
+exer05_01 : exer05_01.o rotations.o split.o
+
+exer05_02_list.o : grade.h student_info.h
+exer05_02_list : exer05_02_list.o grade.o student_info.o fails_list.o median.o
+
+exer05_02_vector.o : exer05_02_vector.cpp grade.h student_info.h
+exer05_02_vector : exer05_02_vector.o grade.o student_info.o fails_vector.o median.o
+
+exer05_03_list.o : grade.h student_info.h student_container.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -DLIST_CONTAINER_ -c -o exer05_03_list.o exer05_03.cpp
+exer05_03_list : exer05_03_list.o grade.o student_info.o fails_list.o median.o
+
+exer05_03_vector.o : grade.h student_info.h student_container.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o exer05_03_vector.o exer05_03.cpp
+exer05_03_vector : exer05_03_vector.o grade.o student_info.o fails_vector.o median.o
+
+exer05_05.o : centered_picture.h
+exer05_05 : exer05_05.o centered_picture.o
+
+exer05_06.o : grade.h student_info.h student_container.h
+exer05_06 : exer05_06.o grade.o student_info.o fails_vector_resize.o median.o
+
+fails_vector.o : grade.h student_info.h
+
+fails_vector_resize.o : grade.h student_info.h
+
+fails_list.o : grade.h student_info.h
+
+grade.o : student_info.h
+
+rotations.o : rotations.h split.h
+
+student_info.o : student_info.h
+
+# utest_centered.o : utest_centered.cpp centered_picture.h $(INCDIR)/cppunit/TestCase.h
+# 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -c -o utest_centered.o utest_centered.cpp
+
+utest_centered.o : CXXFLAGS += -std=c++11
+utest_centered.o : centered_picture.h $(INCDIR)/cppunit/TestCase.h
+
+# utest_centered : utest_centered.o centered_picture.o
+# 	$(CXX)  -L$(LIBDIR) $(RPATH) -o utest_centered \
+# 	utest_centered.o centered_picture.o -lcppunit
+
+utest_centered : LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_centered : LDLIBS := -lcppunit
+utest_centered : utest_centered.o centered_picture.o
+
+utest_concatenate.o : $(TESTDIR)/UnitTest.h rotations.h
+utest_concatenate : utest_concatenate.o rotations.o $(TESTDIR)/UnitTest.o
+
+utest_extract_fails_resize.o : CXXFLAGS += -std=c++11
+utest_extract_fails_resize.o : student_info.h
+
+utest_extract_fails_resize : LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_extract_fails_resize : LDLIBS := -lcppunit
+utest_extract_fails_resize : utest_extract_fails_resize.o fails_vector_resize.o grade.o median.o
+
+utest_max_phrase_len.o : rotations.h $(TESTDIR)/UnitTest.h
+utest_max_phrase_len : utest_max_phrase_len.o rotations.o split.o $(TESTDIR)/UnitTest.o
+
+utest_rotations.o : rotations.h  $(TESTDIR)/UnitTest.h
+utest_rotations : utest_rotations.o rotations.o $(TESTDIR)/UnitTest.o
+
+utest_stream_to_rotations.o : rotations.h $(TESTDIR)/UnitTest.h
+utest_stream_to_rotations : utest_stream_to_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
+
+utest_string_to_lower.o : rotations.h $(TESTDIR)/UnitTest.h
+utest_string_to_lower : utest_string_to_lower.o rotations.o split.o $(TESTDIR)/UnitTest.o

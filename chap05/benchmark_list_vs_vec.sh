@@ -36,7 +36,7 @@ rnum() {
 # this?
 
 rname() {
-    cat /dev/urandom | head -c 200 | tr -cd 'a-z' | head -c 10
+    head -c200 /dev/urandom | tr -cd 'a-z' | head -c10
 }
 
 

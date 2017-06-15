@@ -1,16 +1,10 @@
 #!/bin/bash
 
 # program location
-exer_loc="exer05_03_vector"
+exer_loc="exer05_06"
 
 # process command line arguments and define testing functions
 . ../testing/system_test.sh
-
-# we've checked for `exer05_03_vector', now check for `exer05_03_list'
-if [[ ! -x exer05_03_list ]]; then
-    >&2 echo "error: no executable file $exer_loc exists"
-    exit 1
-fi
 
 
 
@@ -34,11 +28,7 @@ rfpgufelmm 56.4
 znzoocekvf 59.6'
 
 # test vector-based version
-actual=$(./exer05_03_vector <<< "$input")
-ST_ASSERT_EQUAL "$target" "$actual"
-
-# test list-based version
-actual=$(./exer05_03_list <<< "$input")
+actual=$(./$exer_loc <<< "$input")
 ST_ASSERT_EQUAL "$target" "$actual"
 
 
