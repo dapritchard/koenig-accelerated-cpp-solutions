@@ -53,8 +53,6 @@ chap05/exer05_03_vector
 chap05/exer05_04
 chap05/exer05_05
 chap05/exer05_06
-chap05/exer05_07
-chap05/exer05_08
 chap05/exer05_09
 chap05/exer05_10
 chap05/exer05_11
@@ -64,4 +62,5 @@ chap05/utest_extract_fails_resize
 chap05/utest_max_phrase_len
 chap05/utest_rotations
 chap05/utest_stream_to_rotations
+chap05/utest_stream_upp_seg
 chap05/utest_string_to_lower

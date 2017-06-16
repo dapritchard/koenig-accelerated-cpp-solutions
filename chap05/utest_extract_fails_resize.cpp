@@ -77,7 +77,8 @@ public:
 	CPPUNIT_ASSERT(out.empty());
     }
 
-    
+
+    // test the return vector with the failed students' `Student_info's
     void test_four_fail() {
 
 	vector<Student_info> fail = extract_fails(*input_four);
@@ -98,6 +99,8 @@ public:
     }
 
 
+    // test that the input vector is modified so as to only include the passing
+    // students' `Student_info's
     void test_four_pass() {
 
 	extract_fails(*input_four);

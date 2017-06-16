@@ -1,0 +1,18 @@
+Given the implementation of frame in section 5.8.1 page 93, and the following
+code fragment
+
+    vector<string> v;
+    frame(v);
+    
+describe what happens in this call.  In particular, trace through how both the
+width function and the frame function operate.  Now, run this code.  If the
+results differ from your expectations, first understand why your expectations
+and the program differ, and then change one to match the other.
+
+--------------------------------------------------------------------------------
+
+Since `v' has zero elements, the call to `width(z)' returns 0, and consequently
+`frame(v)' simply returns:
+
+    ****
+    ****

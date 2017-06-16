@@ -10,7 +10,7 @@ NAMELEN=10             # length of randomly generated names
 NOBS=(735 7350 73500)  # vector of the number of observations
 
 # filenames to be benchmarked
-exec_arr=(exer05_03_vector exer05_03_list)
+exec_arr=(exer05_03_vector exer05_03_list exer05_06)
 
 # program descriptions
 desc_arr=(vector-based list-based vector-resizing-based)

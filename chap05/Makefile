@@ -111,6 +111,9 @@ exer05_05 : exer05_05.o centered_picture.o
 exer05_06.o : grade.h student_info.h student_container.h
 exer05_06 : exer05_06.o grade.o student_info.o fails_vector_resize.o median.o
 
+exer05_09.o : stream_upp_seg.h
+exer05_09 : exer05_09.o stream_upp_seg.o
+
 fails_vector.o : grade.h student_info.h
 
 fails_vector_resize.o : grade.h student_info.h
@@ -123,15 +126,8 @@ rotations.o : rotations.h split.h
 
 student_info.o : student_info.h
 
-# utest_centered.o : utest_centered.cpp centered_picture.h $(INCDIR)/cppunit/TestCase.h
-# 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -std=c++11 -c -o utest_centered.o utest_centered.cpp
-
 utest_centered.o : CXXFLAGS += -std=c++11
 utest_centered.o : centered_picture.h $(INCDIR)/cppunit/TestCase.h
-
-# utest_centered : utest_centered.o centered_picture.o
-# 	$(CXX)  -L$(LIBDIR) $(RPATH) -o utest_centered \
-# 	utest_centered.o centered_picture.o -lcppunit
 
 utest_centered : LDFLAGS := -L$(LIBDIR) $(RPATH)
 utest_centered : LDLIBS := -lcppunit
@@ -155,6 +151,13 @@ utest_rotations : utest_rotations.o rotations.o $(TESTDIR)/UnitTest.o
 
 utest_stream_to_rotations.o : rotations.h $(TESTDIR)/UnitTest.h
 utest_stream_to_rotations : utest_stream_to_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
+
+utest_stream_upp_seg.o : CXXFLAGS += -std=c++11
+utest_stream_upp_seg.o : stream_upp_seg.h
+
+utest_stream_upp_seg : LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_stream_upp_seg : LDLIBS := -lcppunit
+utest_stream_upp_seg : stream_upp_seg.o
 
 utest_string_to_lower.o : rotations.h $(TESTDIR)/UnitTest.h
 utest_string_to_lower : utest_string_to_lower.o rotations.o split.o $(TESTDIR)/UnitTest.o

@@ -8,7 +8,12 @@
 NGRADES=7              # number of grades generated for each observation
 NAMELEN=10             # length of randomly generated names
 NOBS=(735 7350 73500)  # vector of the number of observations
-exer_loc=exer05_02     # exercise number; used to locate executables
+
+# filenames to be benchmarked
+exec_arr=(exer05_02_vector exer05_02_list)
+
+# program descriptions
+desc_arr=(vector-based list-based vector-resizing-based)
 
 
 # run benchmarking script using variable settings as provided above

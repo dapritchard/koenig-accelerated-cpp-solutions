@@ -7,7 +7,7 @@ using std::vector;
 
 // modifies `students' so that the vector only contains `Student_info's for
 // students who passed, and returns a vector with `Student_info's for students
-// who failed.  The elements for both vectors remain the in same order as they
+// who failed.  The elements for both vectors remain in the same order as they
 // were passed into the function.
 
 vector<Student_info> extract_fails(vector<Student_info>& students) {

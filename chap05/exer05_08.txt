@@ -1,0 +1,17 @@
+In the hcat function from section 5.8.3 page 95, what would happen if we defined
+s outside the scope of the while?  Rewrite and execute the program to confirm
+your hypothesis.
+
+--------------------------------------------------------------------------------
+
+If there are at least as many elements in `left' as in `right', then there is no
+problem, since `s' will be reinitialized at the
+
+    if (i != left.size())
+        s = left[i++];
+
+section.  However, in the alternative scenario, we have a problem because the
+string will not be reinitialized, and either (i) `width1 - s.size()' will be a
+negative value causing an error to be thrown, or (ii) if the string from `right'
+was the empty string (i.e. "") then function will erroneously concatenate the
+padded string from the previous line of `left' and the new string from `right'.
