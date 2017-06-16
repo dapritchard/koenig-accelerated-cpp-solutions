@@ -2,7 +2,7 @@
 #include <string>
 #include "cppunit/ui/text/TestRunner.h"
 #include "cppunit/TestCaller.h"
-#include <cppunit/extensions/HelperMacros.h>
+#include "cppunit/extensions/HelperMacros.h"
 #include "student_info.h"
 
 using std::vector;

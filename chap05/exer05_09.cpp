@@ -1,3 +1,8 @@
+// Page 100
+//
+// Write a program to write the lowercase words in the input followed by the
+// uppercase words.
+
 #include <iostream>
 #include <vector>
 #include <string>

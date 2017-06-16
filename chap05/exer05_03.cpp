@@ -1,3 +1,5 @@
+// Page 100
+//
 // By using a typedef, we can write one version of the program that implements
 // either a vector-based solution or a list-based one.  Write and test this
 // version of the program.

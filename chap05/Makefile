@@ -86,7 +86,7 @@ print-%:
 
 
 
-# lower-level build rules ------------------------------------------------------
+# exercise build rules ---------------------------------------------------------
 
 exer05_01.o : rotations.h
 exer05_01 : exer05_01.o rotations.o split.o
@@ -114,6 +114,12 @@ exer05_06 : exer05_06.o grade.o student_info.o fails_vector_resize.o median.o
 exer05_09.o : stream_upp_seg.h
 exer05_09 : exer05_09.o stream_upp_seg.o
 
+exer05_10.o : stream_ext_palind.h
+exer05_10 : exer05_10.o stream_ext_palind.o
+
+exer05_11.o : stream_ext_smallwd.h
+exer05_11 : exer05_11.o stream_ext_smallwd.o
+
 fails_vector.o : grade.h student_info.h
 
 fails_vector_resize.o : grade.h student_info.h
@@ -125,6 +131,11 @@ grade.o : student_info.h
 rotations.o : rotations.h split.h
 
 student_info.o : student_info.h
+
+
+
+
+# unit testing build rules -----------------------------------------------------
 
 utest_centered.o : CXXFLAGS += -std=c++11
 utest_centered.o : centered_picture.h $(INCDIR)/cppunit/TestCase.h
@@ -151,6 +162,20 @@ utest_rotations : utest_rotations.o rotations.o $(TESTDIR)/UnitTest.o
 
 utest_stream_to_rotations.o : rotations.h $(TESTDIR)/UnitTest.h
 utest_stream_to_rotations : utest_stream_to_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
+
+utest_stream_ext_smallwd.o : CXXFLAGS += -std=c++11
+utest_stream_ext_smallwd.o : stream_ext_smallwd.h
+
+utest_stream_ext_smallwd : LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_stream_ext_smallwd : LDLIBS := -lcppunit
+utest_stream_ext_smallwd : stream_ext_smallwd.o
+
+utest_stream_ext_palind.o : CXXFLAGS += -std=c++11
+utest_stream_ext_palind.o : stream_ext_palind.h
+
+utest_stream_ext_palind : LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_stream_ext_palind : LDLIBS := -lcppunit
+utest_stream_ext_palind : stream_ext_palind.o
 
 utest_stream_upp_seg.o : CXXFLAGS += -std=c++11
 utest_stream_upp_seg.o : stream_upp_seg.h

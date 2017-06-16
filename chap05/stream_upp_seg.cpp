@@ -11,7 +11,7 @@ using std::string;
 
 // return true if any char in `s' is uppercase, and return false otherwise
 
-bool has_upper(string s) {
+bool has_upper(const string& s) {
 
     string::const_iterator end = s.end();
 
@@ -38,10 +38,12 @@ bool has_upper(string s) {
 istream& stream_upp_seg(istream& in, vector<string>& lower, vector<string>& upper) {
 
     string curr;
-    
+
+    // each iteration reads one one from `in' and appends to the appropriate
+    // vector
     while (in >> curr) {
 
-	// 
+	// append current word to the appropriate vector
 	if (has_upper(curr)) {
 	    upper.push_back(curr);
 	} else {
