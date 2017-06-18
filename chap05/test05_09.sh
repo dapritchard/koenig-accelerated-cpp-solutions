@@ -6,12 +6,6 @@ exer_loc="exer05_09"
 # process command line arguments and define testing functions
 . ../testing/system_test.sh
 
-# we've checked for `exer05_03_vector', now check for `exer05_03_list'
-if [[ ! -x exer05_03_list ]]; then
-    >&2 echo "error: no executable file $exer_loc exists"
-    exit 1
-fi
-
 
 
 

@@ -17,14 +17,20 @@ CXXFLAGS := -Wall -g3 $(CXXFLAGS)
 CC := $(CXX)
 
 
-
-
 # create program and testing variables -----------------------------------------
 
 # these variables are used later as prerequisites for targets
 
-# names of the executables after stripping the .cpp suffix
-executables := $(sort $(basename $(wildcard $(EXER_PREFIX)*.cpp) ) )
+# names of the executables, obtained by stripping the .cpp suffix
+#
+# remove exer05_03.cpp from the list since that executable is not generated, and
+# instead add exer05_03_vector and exer05_03_list (which are both built from
+# exer05_03.cpp using different compiler defines directives).
+
+executables := $(sort $(basename $(filter-out exer05_03.cpp,        \
+                                   $(wildcard $(EXER_PREFIX)*.cpp)  \
+                                     exer05_03_vector               \
+                                     exer05_03_list)))
 
 # names of the Bash test scripts
 test_targets := $(sort $(basename $(wildcard $(TEST_PREFIX)*.sh) ) )
@@ -85,6 +91,18 @@ print-%:
 
 
 
+# test rules not covered by implicit rules -------------------------------------
+
+test05_02 : test05_02.sh exer05_02_vector exer05_02_list
+	@printf test05_02.sh && ./test05_02.sh > /dev/null && printf ":    pass\n" \
+		|| printf ":    ** test failure **\n"
+
+test05_03 : test05_03.sh exer05_03_vector exer05_03_list
+	@printf test05_03.sh && ./test05_03.sh > /dev/null && printf ":    pass\n" \
+		|| printf ":    ** test failure **\n"
+
+
+
 
 # exercise build rules ---------------------------------------------------------
 
@@ -137,51 +155,46 @@ student_info.o : student_info.h
 
 # unit testing build rules -----------------------------------------------------
 
-utest_centered.o : CXXFLAGS += -std=c++11
-utest_centered.o : centered_picture.h $(INCDIR)/cppunit/TestCase.h
+# unit tests linked against CppUnit need to be compiled using the C++11
+# standard, and the compiler needs to be informed where to find the header files
+# and shared objects
 
-utest_centered : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_centered : LDLIBS := -lcppunit
+utest_cxx11_o :=  utest_centered.o utest_extract_fails_resize.o utest_stream_ext_smallwd.o \
+                  utest_stream_ext_palind.o utest_stream_upp_seg.o
+
+utest_cxx11 := $(basename $(utest_cxx11_o))
+
+$(utest_cxx11_o) : CXXFLAGS += -std=c++11
+$(utest_cxx11) : LDFLAGS := -L$(LIBDIR) $(RPATH)
+$(utest_cxx11) : LDLIBS := -lcppunit
+
+# begin unit testing recipe section
+
+utest_centered.o : centered_picture.h $(INCDIR)/cppunit/TestCase.h
 utest_centered : utest_centered.o centered_picture.o
 
 utest_concatenate.o : $(TESTDIR)/UnitTest.h rotations.h
-utest_concatenate : utest_concatenate.o rotations.o $(TESTDIR)/UnitTest.o
+utest_concatenate : utest_concatenate.o rotations.o split.o $(TESTDIR)/UnitTest.o
 
-utest_extract_fails_resize.o : CXXFLAGS += -std=c++11
 utest_extract_fails_resize.o : student_info.h
-
-utest_extract_fails_resize : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_extract_fails_resize : LDLIBS := -lcppunit
 utest_extract_fails_resize : utest_extract_fails_resize.o fails_vector_resize.o grade.o median.o
 
 utest_max_phrase_len.o : rotations.h $(TESTDIR)/UnitTest.h
 utest_max_phrase_len : utest_max_phrase_len.o rotations.o split.o $(TESTDIR)/UnitTest.o
 
 utest_rotations.o : rotations.h  $(TESTDIR)/UnitTest.h
-utest_rotations : utest_rotations.o rotations.o $(TESTDIR)/UnitTest.o
+utest_rotations : utest_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
 
 utest_stream_to_rotations.o : rotations.h $(TESTDIR)/UnitTest.h
 utest_stream_to_rotations : utest_stream_to_rotations.o rotations.o split.o $(TESTDIR)/UnitTest.o
 
-utest_stream_ext_smallwd.o : CXXFLAGS += -std=c++11
 utest_stream_ext_smallwd.o : stream_ext_smallwd.h
-
-utest_stream_ext_smallwd : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_stream_ext_smallwd : LDLIBS := -lcppunit
 utest_stream_ext_smallwd : stream_ext_smallwd.o
 
-utest_stream_ext_palind.o : CXXFLAGS += -std=c++11
 utest_stream_ext_palind.o : stream_ext_palind.h
-
-utest_stream_ext_palind : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_stream_ext_palind : LDLIBS := -lcppunit
 utest_stream_ext_palind : stream_ext_palind.o
 
-utest_stream_upp_seg.o : CXXFLAGS += -std=c++11
 utest_stream_upp_seg.o : stream_upp_seg.h
-
-utest_stream_upp_seg : LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_stream_upp_seg : LDLIBS := -lcppunit
 utest_stream_upp_seg : stream_upp_seg.o
 
 utest_string_to_lower.o : rotations.h $(TESTDIR)/UnitTest.h
