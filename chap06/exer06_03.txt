@@ -1,0 +1,23 @@
+What does this program fragment do?
+
+    vector<int> u(10, 100);
+    vector<int> v;
+    copy(u.begin(), u.end(), v.begin());
+    
+Write a program that contains this fragment, and compile and execute it.
+
+--------------------------------------------------------------------------------
+
+Running this code on my system lead to a segmentation fault.  My guess is that
+the vector object internally has a member pointer to the location in memory
+where the data is to be stored, and since we haven't initialized it yet, it may
+point anywhere in memory.  This could lead to `v.begin()' returning an address
+that the program is not permitted to access (as determined by the OS), which
+leads to the segmentation fault.
+
+A second issue is that even if we have a location in memory for the data, the
+vector has a size of 0, and copying data to that location could potentially
+overwrite data that was allocated for other purposes.  Even if the data is
+reserved for possible later use by the vector, the vector object still views
+itself as having size 0 after the copy and consequently the normal vector
+operations will not work as desired.

@@ -22,11 +22,6 @@ CC := $(CXX)
 # these variables are used later as prerequisites for targets
 
 # names of the executables, obtained by stripping the .cpp suffix
-#
-# remove exer05_03.cpp from the list since that executable is not generated, and
-# instead add exer05_03_vector and exer05_03_list (which are both built from
-# exer05_03.cpp using different compiler defines directives).
-
 executables := $(sort $(basename $(wildcard $(EXER_PREFIX)*.cpp) ) )
 
 # names of the Bash test scripts
@@ -96,7 +91,28 @@ exer06_01 : exer06_01.o pics.o
 exer06_02.o : urls.h
 exer06_02 : urls.o
 
+exer06_05.o : analysis.h student_info.h
+exer06_05 : analysis.o grade_check.o grade.o median.o student_info.o
 
+exer06_06.o : analysis.h student_info.h
+exer06_06 : analy_refactor.o grade_check.o grade.o median.o student_info.o
+
+exer06_07.o : analysis.h student_info.h extract_didnt.h
+exer06_07 : analy_refactor.o extract_didnt.cpp grade_check.o grade.o median.o student_info.o
+
+exer06_08.o : analysis.h student_info.h extract_if.h
+exer06_08 : analy_refactor.o extract_if.cpp grade_check.o grade.o median.o student_info.o
+
+exer06_09.o : str_concat.h
+exer06_09 : str_concat.o
+
+analysis.o : student_info.h grade.h median.h
+
+extract_didnt.cpp : student_info.h analy_refactor.h
+
+grade.o : student_info.h grade.h median.h
+
+grade_check.o : student_info.h
 
 
 # # unit testing build rules -----------------------------------------------------

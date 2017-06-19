@@ -1,0 +1,29 @@
+Correct the program you wrote in the previous exercise to copy from u into v.
+There are at least two possible ways to correct the program.  Implement both,
+and describe the relative advantages and disadvantages of each approach.
+
+--------------------------------------------------------------------------------
+
+1.  We can use `back_inserter(v)' instead of `v.begin()'.
+
+2.  We can add the line `v.resize(10);' before the copy command.  This
+    initializes the vector to a size of ten - then copying data to those
+    elements will work as desired, and the vector will be in a consistent state
+    although it knows nothing about the copy.
+
+The first method dynamically adds one element to the length of the vector
+at-a-time.  This could in theory result in needing multiple reallocations of
+memory and data copying to accomodate the growing size of the vector.  On the
+positive side, this is a very easy-to-read and fail-safe approach.
+
+The second method initialized the data in the first step and then copies the
+data to the vector.  This avoids potentially needing multiple reallocations of
+the vector as in the first approach.  However, this is a very non-idiomatic
+approach and is more prone to difficult-to-detect bugs.
+
+
+
+
+Aside: to avoid the potential need to resize in the first approach, one can
+include the command `v.reserve(10)' which has the effect of reserving memory for
+at least 10 elements.
