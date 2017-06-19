@@ -127,7 +127,7 @@ override utest_% : override LDLIBS := -lcppunit
 
 # begin unit testing recipe section
 
-utest_hcat.cpp : pics.h
+utest_hcat.o : pics.h
 utest_hcat : pics.o
 
 utest_frame.o : pics.h
