@@ -121,9 +121,9 @@ grade_check.o : student_info.h
 # standard, and the compiler needs to be informed where to find the header files
 # and shared objects
 
-override utest_%.o : override CXXFLAGS += -std=c++11
-override utest_% : override LDFLAGS := -L$(LIBDIR) $(RPATH)
-override utest_% : override LDLIBS := -lcppunit
+utest_%.o : override CXXFLAGS += -std=c++11
+utest_% : override LDFLAGS := -L$(LIBDIR) $(RPATH)
+utest_% : override LDLIBS := -lcppunit
 
 # begin unit testing recipe section
 

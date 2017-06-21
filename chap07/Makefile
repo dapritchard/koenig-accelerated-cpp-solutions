@@ -91,7 +91,14 @@ exer07_03 : split.o
 exer07_04.o : split.h
 exer07_04 : split.o
 
+exer07_05.o : split.h
+exer07_05 : split.o
 
+exer07_06.o : gen_sentence.h
+exer07_06 : gen_sentence.o split.o nrand.o
+
+gen_sentence.o : gen_sentence.h split.h nrand.h
+gen_sentence : split.o nrand.o
 
 
 
@@ -101,14 +108,11 @@ exer07_04 : split.o
 # standard, and the compiler needs to be informed where to find the header files
 # and shared objects
 
-# override utest_%.o : override CXXFLAGS += -std=c++11
-# override utest_% : override LDFLAGS := -L$(LIBDIR) $(RPATH)
-# override utest_% : override LDLIBS := -lcppunit
+utest_%.o : override CXXFLAGS += -std=c++11
+utest_% : override LDFLAGS += -L$(LIBDIR) $(RPATH)
+utest_% : override LDLIBS += -lcppunit
 
 # # begin unit testing recipe section
 
-# utest_hcat.o : pics.h
-# utest_hcat : pics.o
-
-# utest_frame.o : pics.h
-# utest_frame : pics.o
+utest_gen_sentence.o : gen_sentence.h split.h nrand.h
+utest_gen_sentence : gen_sentence.o split.o nrand.o

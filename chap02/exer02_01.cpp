@@ -1,6 +1,6 @@
 /* Page 34
  *
- * Change the framing program so tha it writes its greeting with no separation
+ * Change the framing program so that it writes its greeting with no separation
  * from the frame.
  */
 
