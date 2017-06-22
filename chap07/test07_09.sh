@@ -25,7 +25,7 @@ done < <(./$exer_loc)
 NSAMP=1000000
 N=65
 exp_mean=$((NSAMP / N))
-range=5000
+range=$((exp_mean / 3))
 low_bnd=$((exp_mean - range))
 upp_bnd=$((exp_mean + range))
 
