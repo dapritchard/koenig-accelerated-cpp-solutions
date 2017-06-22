@@ -60,8 +60,7 @@ to
 
 seen 4 time(s)
 ------------------
-Come
-"
+Come"
 
 # test multiple word instances input
 actual=$(./$exer_loc <<< "$input")

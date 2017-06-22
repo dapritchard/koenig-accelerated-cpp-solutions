@@ -1,15 +1,17 @@
-// The output produced by the cross-reference program will be ungainly if the
-// input file is large.  Rewrite the program to break up the output if the lines
-// get too long.
+// Page 138
+//
+// Change the cross-reference program to find all the URLs in a file, and write all the
+// lines on which each distinct URL occurs.
 
 #include <map>
 #include <iostream>
 #include <string>
 #include <vector>
 #include "split.h"
+#include "urls.h"
 
-#define COLWIDTH    40
-#define SCREENWIDTH 60
+#define COLWIDTH     60
+#define SCREENWIDTH 100
 
 using std::cin;            using std::cout;
 using std::endl;           using std::getline;
@@ -88,7 +90,7 @@ int main() {
 
     // read input and construct an associative container mapping the lines on
     // which they appear to words
-    map<string, vector<int> > ret = xref(cin);
+    map<string, vector<int> > ret = xref(cin, find_urls);
 
     // write the results
     for (map<string, vector<int> >::const_iterator it = ret.begin(); it != ret.end(); ++it) {
@@ -104,6 +106,11 @@ int main() {
 	if ((nchars = line_statement.size()) < COLWIDTH) {
 	    line_statement += string(COLWIDTH - nchars, ' ');
 	    nchars = COLWIDTH;
+	}
+	// otherwise add two chars of separation
+	else {
+	    line_statement += "  ";
+	    nchars += 2;
 	}
 
 	// print the word declaration portion of the line

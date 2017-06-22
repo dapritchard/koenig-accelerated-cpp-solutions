@@ -97,6 +97,12 @@ exer07_05 : split.o
 exer07_06.o : gen_sentence.h
 exer07_06 : gen_sentence.o split.o nrand.o
 
+exer07_08.o : split.h urls.h
+exer07_08 : split.o urls.o
+
+exer07_09.o : nrand.h
+exer07_09 : nrand.o
+
 gen_sentence.o : gen_sentence.h split.h nrand.h
 gen_sentence : split.o nrand.o
 

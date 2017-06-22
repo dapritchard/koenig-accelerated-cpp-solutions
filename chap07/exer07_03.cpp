@@ -18,7 +18,8 @@ using std::vector;         using std::map;
 
 
 // find all the lines that refer to each word in the input
-map<string, vector<int> > xref(istream& in) {
+map<string, vector<int> > xref(istream& in,
+			       vector<string> find_words(const string&) = split) {
     
     string line;
     int line_number = 0;
@@ -30,7 +31,7 @@ map<string, vector<int> > xref(istream& in) {
 	++line_number;
 
 	// break the input line into words
-	vector<string> words = split(line);
+	vector<string> words = find_words(line);
 
 	// remember that each word occurs on the current line
 	for (vector<string>::const_iterator it = words.begin(); it != words.end(); ++it) {
