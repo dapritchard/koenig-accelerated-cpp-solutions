@@ -122,8 +122,8 @@ grade_check.o : student_info.h
 # and shared objects
 
 utest_%.o : override CXXFLAGS += -std=c++11
-utest_% : override LDFLAGS := -L$(LIBDIR) $(RPATH)
-utest_% : override LDLIBS := -lcppunit
+utest_% : override LDFLAGS += -L$(LIBDIR) $(RPATH)
+utest_% : override LDLIBS += -lcppunit
 
 # begin unit testing recipe section
 
