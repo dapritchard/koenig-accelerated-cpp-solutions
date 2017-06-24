@@ -1,0 +1,15 @@
+Page 154
+
+In the binary_search function in section 8.2.6 page 148, why didn't we write
+
+    (begin + end) / 2
+
+instead of the more complicated
+
+    begin + (end - begin) / 2
+
+--------------------------------------------------------------------------------
+
+The result of `begin + end' may be undefined since the standard only requires
+the pointer to one element past the last element of a container to be
+well-defined.

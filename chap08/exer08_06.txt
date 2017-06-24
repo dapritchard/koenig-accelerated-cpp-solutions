@@ -1,0 +1,11 @@
+Page 154
+
+Suppose that m has type map<int, string>, and that we encounter a call to
+copy(m.begin(), m.end(), back_inserter(x)).  What can we say about the type of
+x?  What if the call were copy(x.begin(), x.end(), back_inserter(m)) instead?
+
+--------------------------------------------------------------------------------
+
+In the first call, x must have type map<int, string>.  In the second call, x
+must by some type such that calls to begin() and end() return iterators that
+point to pair<int, string> objects.

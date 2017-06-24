@@ -78,7 +78,7 @@ chap06/exer06_09
 chap06/utest_hcat
 chap06/utest_frame
 
-# chapter07
+# chapter 07
 chap07/exer07_01
 chap07/exer07_02
 chap07/exer07_03
@@ -88,3 +88,12 @@ chap07/exer07_06
 chap07/exer07_08
 chap07/exer07_09
 chap07/utest_gen_sentence
+
+# chapter 08
+chap08/exer08_01
+chap08/exer08_04
+chap08/exer08_05_gen_sent
+chap08/exer08_05_xref
+chap08/utest_lib_algs
+
+# chapter 09

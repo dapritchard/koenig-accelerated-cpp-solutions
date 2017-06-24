@@ -1,0 +1,10 @@
+Page 154
+
+Why doesn't the max function in section 8.1.3 page 143 use two template
+parameters, one for each argument type?
+
+--------------------------------------------------------------------------------
+
+Using only 1 template parameters ensures that the arguments passed to the
+function can each be cast to type T, which is important so that the `>' operator
+makes sense.

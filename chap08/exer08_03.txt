@@ -1,0 +1,13 @@
+As we learned in section 4.1.4 page 58, it can be expensive to return (or pass)
+a container by value.  Yet the median function that we wrote in section 8.1.1
+page 140 passes the vector by value.  Could we rewrite the median function to
+operate on iterators instead of passing the vector?  If we did so, what would
+you expect the performance impact to be?
+
+--------------------------------------------------------------------------------
+
+We certainly could rewrite the median function to take iterators as its
+arguments rather than copying the entire data structure.  This would have the
+same effect as passing the object by reference.  Doing so would save the
+overhead of copying the structure, but performing the sort call during the
+function would change the original data, which might not be desirable.
