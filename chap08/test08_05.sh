@@ -1,15 +1,34 @@
 #!/bin/bash
 
 # program location
-exer_loc="exer08_05_xref"
+exer_loc='exer08_05_gen_sent'
+
+if [[ ! -x exer08_05_xref ]]; then
+    >&2 echo 'error: no executable file exer08_05_xref exists'
+    exit 1
+fi
 
 # process command line arguments and define testing functions
 . ../testing/system_test.sh
 
+# source function to test for a valid sentence for xref
+. ../chap07/verify_sentence.sh
 
 
 
-# conduct tests ----------------------------------------------------------------
+
+# conduct gen_sentence tests ===================================================
+
+input=$(cat ../chap07/grammar_input.txt)
+
+# the number of tests to perform
+ntest=10
+verify_ntest_sentences
+
+
+
+
+# conduct xref tests ===========================================================
 
 # toy example data -----------------------------------------
 
@@ -53,12 +72,11 @@ Stroustrup occurs on lines:             1, 2, 3, 4, 5, 6, 7,
 # begin tests ----------------------------------------------
 
 # test toy example
-actual=$(./$exer_loc <<< "$input_small")
+actual=$(./exer08_05_xref <<< "$input_small")
 ST_ASSERT_EQUAL "$target_small" "$actual"
 
-
 # test multiple word instances input
-actual=$(./$exer_loc <<< "$input_multiple")
+actual=$(./exer08_05_xref <<< "$input_multiple")
 ST_ASSERT_EQUAL "$target_multiple" "$actual"
 
 

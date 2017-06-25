@@ -3,7 +3,7 @@
 // Reimplement the gen_sentence function from Chapter 7 to use output iterators
 // rather than writing their output directly to a vector<string>. Test this new
 // version by writing a program that attaches the output iterator directly to
-// the standard output, and by storing the results in a list<string>.
+// the standard output.
 
 #include <algorithm>
 #include <cstdlib>
@@ -11,9 +11,8 @@
 #include <map>
 #include <stdexcept>
 #include <string>
-#include <vector>
-#include <list>
 #include <ctime>
+#include <iterator>
 #include "split.h"
 
 using std::istream;           using std::cin;
@@ -22,14 +21,37 @@ using std::endl;              using std::find;
 using std::getline;           using std::logic_error;
 using std::map;               using std::string;
 using std::vector;            using std::domain_error;
-using std::rand;              using std::list;
+using std::rand;              using std::ostream_iterator;
 
 typedef vector<string> Rule;
 typedef vector<Rule> Rule_collection;
 typedef map<string, Rule_collection> Grammar;
 
+// function declarations
+Grammar read_grammar(istream& in);
+template <class Out> Out gen_sentence(const Grammar& g, Out& dest);
+template <class Out> void gen_aux(const Grammar& g, const string& word, Out& dest);
+int nrand(int n);
+bool bracketed(const string& s);
 
 
+
+
+// begin main ------------------------------------------------------------------
+
+int main() {
+
+    ostream_iterator<string> out(cout, " ");
+    gen_sentence(read_grammar(cin), out);
+    cout << "\n";
+
+    return 0;
+}
+
+
+
+
+// begin supporting functions --------------------------------------------------
 
 // read a grammar from a given input stream
 Grammar read_grammar(istream& in)
@@ -55,30 +77,25 @@ Grammar read_grammar(istream& in)
 
 
 
-void gen_aux(const Grammar&, const string&, list<string>&);
-int nrand(int);
-
-
-list<string> gen_sentence(const Grammar& g) {
-    list<string> ret;
-    gen_aux(g, "<sentence>", ret);
-    return ret;
+// seed workhorse function `gen_aux' with `<sentence>' rule
+template <class Out>
+Out gen_sentence(const Grammar& g, Out& dest) {
+    gen_aux(g, "<sentence>", dest);
+    return dest;
 }
 
 
 
 
-bool bracketed(const string& s) {
-    return s.size() > 1 && s[0] == '<' && s[s.size() - 1] == '>';
-}
+// if `word' is a literal word, then store in and increment `dest'.  Otherwise
+// randomly select and expand the rule and recursively process all of the words
+// that the rule provides.
 
-
-
-
-void gen_aux(const Grammar& g, const string& word, list<string>& ret) {
+template <class Out>
+void gen_aux(const Grammar& g, const string& word, Out& dest) {
 
     if (!bracketed(word)) {
-	ret.push_back(word);
+	*dest++ = word;
     }
     else {
 	// locate the rule that corresponds to `word'
@@ -95,7 +112,7 @@ void gen_aux(const Grammar& g, const string& word, list<string>& ret) {
 
 	// recursively expand the selected rule
 	for (Rule::const_iterator i = r.begin(); i != r.end(); ++i) {
-	    gen_aux(g, *i, ret);
+	    gen_aux(g, *i, dest);
 	}
     }
 }
@@ -103,27 +120,27 @@ void gen_aux(const Grammar& g, const string& word, list<string>& ret) {
 
 
 
-int main() {
+// int main() {
     
-    // generate the sentence
-    list<string> sentence = gen_sentence(read_grammar(cin));
+//     // generate the sentence
+//     list<string> sentence = gen_sentence(read_grammar(cin));
 
-    // write the first word, if any
-    list<string>::const_iterator it = sentence.begin();
-    if (!sentence.empty()) {
-	cout << *it;
-	++it;
-    }
+//     // write the first word, if any
+//     list<string>::const_iterator it = sentence.begin();
+//     if (!sentence.empty()) {
+// 	cout << *it;
+// 	++it;
+//     }
 
-    // write the rest of the words, each preceded by a space
-    while (it != sentence.end()) {
-	cout << " " << *it;
-	++it;
-    }
+//     // write the rest of the words, each preceded by a space
+//     while (it != sentence.end()) {
+// 	cout << " " << *it;
+// 	++it;
+//     }
 
-    cout << endl;
-    return 0;
-}
+//     cout << endl;
+//     return 0;
+// }
 
 
 
@@ -147,3 +164,11 @@ int nrand(int n) {
 
     return r;
 }
+
+
+
+
+bool bracketed(const string& s) {
+    return s.size() > 1 && s[0] == '<' && s[s.size() - 1] == '>';
+}
+

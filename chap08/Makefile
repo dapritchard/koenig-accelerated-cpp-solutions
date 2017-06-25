@@ -22,13 +22,13 @@ CC := $(CXX)
 # these variables are used later as prerequisites for targets
 
 # names of the executables, obtained by stripping the .cpp suffix
-executables := $(sort $(basename $(wildcard $(EXER_PREFIX)*.cpp) ) )
+executables := exer08_01 exer08_04 exer08_05_gen_sent exer08_05_xref
 
 # names of the Bash test scripts
 test_targets := $(sort $(basename $(wildcard $(TEST_PREFIX)*.sh) ) )
 
 # names of the C++ unit tests
-unit_tests := $(sort $(basename $(wildcard $(UNIT_PREFIX)*.cpp) ) )
+unit_tests := utest_lib_algs
 
 # dummy names used to initiate execution of unit tests
 unit_targets := $(addprefix $(RUN_PREFIX), $(unit_tests))
@@ -83,6 +83,15 @@ print-%:
 
 
 
+# test rules not covered by implicit rules -------------------------------------
+
+test08_05 : test08_05.sh exer08_05_gen_sent exer08_05_xref
+	@printf test08_05.sh && ./test08_05.sh > /dev/null && printf ":    pass\n" \
+		|| printf ":    ** test failure **\n"
+
+
+
+
 # exercise build rules ---------------------------------------------------------
 
 src := ../chap06
@@ -92,13 +101,14 @@ exer08_01.o : analy_refactor.h $(src)/student_info.h
 exer08_01 : grade_check.o grade.o median.o student_info.o
 
 
-exer08_05_xref.o : override CPPFLAGS += -I../chap07
+exer08_05_gen_sent.o exer08_05_xref.o : override CPPFLAGS += -I../chap07
 exer08_05_xref.o : override CXXFLAGS += -std=c++11
+
+exer08_05_gen_sent.o : ../chap07/split.h
+exer08_05_gen_sent : split.o
+
 exer08_05_xref.o : ../chap07/split.h
 exer08_05_xref : split.o
-
-# analy_refactor.o : override CPPFLAGS += -I$(src)
-# analy_refactor.o : analy_refactor.h $(addprefix $(src)/, student_info.h grade.h median.h)
 
 median.o : $(src)/median.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o median.o $(src)/median.cpp
@@ -142,15 +152,3 @@ utest_alg_names_o := $(addsuffix .o, $(utest_alg_names))
 
 utest_lib_algs.o : $(utest_alg_names_h)
 utest_lib_algs : $(utest_alg_names_o)
-
-
-
-
-
-# utest_copy.o : utest_copy.h lib_algs.h
-
-# utest_equal.o : utest_equal.h lib_algs.h
-
-# utest_find.o : utest_find.h lib_algs.h
-
-# utest_search.o : utest_search.h lib_algs.h

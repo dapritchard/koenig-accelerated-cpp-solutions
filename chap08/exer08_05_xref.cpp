@@ -26,12 +26,14 @@ using std::to_string;      using std::ostream_iterator;
 // function declarations
 int calc_nchars(int val);
 template <class Out>
-Out write_xref(Out dest, map<string, vector<int> > tab);
+Out write_xref(Out& dest, map<string, vector<int> > tab);
 template <class Out>
-Out xref(istream& in, Out dest, vector<string> find_words(const string&) = split);
+Out xref(istream& in, Out& dest, vector<string> find_words(const string&) = split);
 
 
 
+
+// begin main ------------------------------------------------------------------
 
 int main() {
 
@@ -44,9 +46,11 @@ int main() {
 
 
 
+// begin supporting functions --------------------------------------------------
+
 // find all the lines that refer to each word in the input
 template <class Out>
-Out xref(istream& in, Out dest, vector<string> find_words(const string&)) {
+Out xref(istream& in, Out& dest, vector<string> find_words(const string&)) {
     
     string line;
     int line_number = 0;
@@ -84,7 +88,7 @@ Out xref(istream& in, Out dest, vector<string> find_words(const string&)) {
 // written to `dest'.
 
 template <class Out>
-Out write_xref(Out dest, map<string, vector<int> > tab) {
+Out write_xref(Out& dest, map<string, vector<int> > tab) {
 
     // write the results
     for (map<string, vector<int> >::const_iterator it = tab.begin(); it != tab.end(); ++it) {
