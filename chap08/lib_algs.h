@@ -150,3 +150,78 @@ For my_remove_if(For beg, For end, Pred pred) {
 
     return curr;
 }
+
+
+
+
+template <class In, class Out, class Fcn>
+Out my_transform(In beg, In end, Out dest, Fcn fcn) {
+    for ( ; beg != end; beg++) {
+	*dest++ = fcn(*beg);
+    }
+    return dest;
+}
+
+
+
+
+template <class In1, class In2, class Out, class Fcn>
+Out my_transform(In1 beg1, In1 end1, In2 beg2, Out dest, Fcn fcn) {
+    while (beg1 != end1) {
+	*dest++ = fcn(*beg1, *beg2);
+	beg1++; beg2++;
+    }
+    return dest;
+}
+
+
+
+
+template <class T> void swap(T& a, T& b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
+
+
+
+template <class For, class Pred>
+For my_partition(For beg, For end, Pred pred) {
+
+    // invariant: no elements to the left of `beg' evaluate to false, and no
+    // elements to the right of `end' evaluate to false
+    while (true) {
+
+	// find the leftmost element that evaluates to false
+	while (beg != end && pred(*beg)) {
+	    beg++;
+	}
+
+	// find the rightmost element that evaluates to true
+	while (beg != end && !pred(*--end)) {
+	    // noop
+	}
+
+	// conditionally swap the leftmost element that evaluates to false, and
+	// the rightmost element that evaluates to true
+	if (beg != end) {
+	    swap(*beg, *end);
+	} else {
+	    break;
+	}
+    }
+
+    return beg;
+}
+
+
+
+
+template <class In, class T>
+T my_accumulate(In beg, In end, T val) {
+    for ( ; beg != end; beg++) {
+	val += *beg;
+    }
+    return val;
+}

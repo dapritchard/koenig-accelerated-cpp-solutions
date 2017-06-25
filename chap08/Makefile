@@ -100,7 +100,8 @@ exer08_01.o : analy_refactor.h $(src)/student_info.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I$(src) -c -o exer08_01.o exer08_01.cpp
 exer08_01 : grade_check.o grade.o median.o student_info.o
 
-
+# specify variables for compilations that require headers in chap07 directory.
+# exer08_05_xref requires C++11 for `to_string'.
 exer08_05_gen_sent.o exer08_05_xref.o : override CPPFLAGS += -I../chap07
 exer08_05_xref.o : override CXXFLAGS += -std=c++11
 
@@ -126,6 +127,8 @@ student_info.o : $(src)/student_info.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o student_info.o $(src)/student_info.cpp
 
 
+
+
 # unit testing build rules -----------------------------------------------------
 
 # unit tests linked against CppUnit need to be compiled using the C++11
@@ -142,13 +145,12 @@ utest_% : override LDLIBS += -lcppunit
 utest_%.o : utest_%.h lib_algs.h
 
 # build the list of library algorithm names from exercise 8-2
-# alg_names := accumulate copy equal find search remove remove_copy transform partition
-alg_names := copy equal find search remove remove_copy
+alg_names := accumulate copy equal find partition search remove remove_copy transform
 utest_alg_names := $(addprefix utest_, $(alg_names))
 utest_alg_names_h := $(addsuffix .h, $(utest_alg_names))
 utest_alg_names_o := $(addsuffix .o, $(utest_alg_names))
 
 # begin unit testing recipe section
 
-utest_lib_algs.o : $(utest_alg_names_h)
+utest_lib_algs.o : $(utest_alg_names_h) lib_algs.h
 utest_lib_algs : $(utest_alg_names_o)
