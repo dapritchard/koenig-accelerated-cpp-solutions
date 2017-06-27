@@ -1,0 +1,6 @@
+If we define the name function as a plain, non-const member function, what other
+functions in our system must change and why?
+
+--------------------------------------------------------------------------------
+
+?? I don't have an answer for this..
