@@ -1,0 +1,7 @@
+Rewrite the median function from section 8.1.1 page 140 so that we can call it
+with either a vector or a built-in array. The function should allow containers
+of any arithmetic type.
+
+--------------------------------------------------------------------------------
+
+The median function is implemented in the file median.h.

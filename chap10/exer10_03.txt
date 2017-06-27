@@ -1,0 +1,7 @@
+Write a test program to verify that the median function operates correctly.
+Ensure that calling median does not change the order of the elements in the
+container.
+
+--------------------------------------------------------------------------------
+
+The test program for median is in the utest_median file.
