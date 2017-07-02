@@ -6,7 +6,7 @@
 
 class StudentInfoGrade {
     
- public:
+public:
     
     StudentInfoGrade();              // construct an empty `StudentInfoGrade' object
     StudentInfoGrade(std::istream&); // construct one by reading a stream
@@ -18,7 +18,7 @@ class StudentInfoGrade {
     std::string letter_grade() const;
 
     
- private:
+private:
     
     std::string nm;
     double midterm, final, overall;

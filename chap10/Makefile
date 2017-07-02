@@ -89,12 +89,18 @@ print-%:
 exer10_01.o : grade.h median.h student_info_grade.h
 exer10_01 : grade.o student_info_grade.o
 
+exer10_07.o : string_list.h
+exer10_07 : string_list.o string_list_const_iter.o string_list_iter.o
+
 grade.o : median.h
 
 student_info_grade.o : grade.h student_info_grade.h
 
+string_list.o : string_list.h
 
+string_list_const_iter.o : string_list.h
 
+string_list_iter.o : string_list.h
 
 # # unit testing build rules -----------------------------------------------------
 
