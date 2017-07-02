@@ -16,7 +16,7 @@ StringList::StringList() {
 
 // copy constructor.  Note that this is a deep copy since it relies on
 // `operator=' which is also a deep copy.
-StringList::StringList(StringList& rhs) {
+StringList::StringList(const StringList& rhs) {
     init();
     *this = rhs;
 }

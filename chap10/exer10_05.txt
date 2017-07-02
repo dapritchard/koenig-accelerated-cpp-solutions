@@ -1,0 +1,7 @@
+Write a bidirectional iterator for your String_list class.
+
+--------------------------------------------------------------------------------
+
+The StringList class and nested classes const_iterator and iterator are declared
+in string_list.h and defined in string_list.cpp, string_list_const_iter.cpp, and
+string_list_iter.cpp.

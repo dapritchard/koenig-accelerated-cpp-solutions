@@ -3,7 +3,7 @@
 // operators syntax.  Furthermore, much of the code in this class is based on
 // the book "Data Structures and Algorithms in C++" by Mark Allen Weiss, section
 // 3.5.  The source code for that implementation can be found at:
-// 
+//
 //     http://users.cis.fiu.edu/~weiss/dsaa_c++3/code/List.h
 //
 // The main thing to understand about this construction of the list class is
@@ -40,8 +40,8 @@ private:
     int n_elem;
     Node *head;
     Node *tail;
-    
-    
+
+
 public:
 
     // these two nested classes provide the iterator functionality for the
@@ -51,7 +51,7 @@ public:
 
     // constructors, assignment operator, and destructor
     StringList();
-    StringList(StringList& rhs);
+    StringList(const StringList& rhs);
     StringList& operator=(const StringList& rhs);
     ~StringList();
 
@@ -85,7 +85,7 @@ public:
 // Node nested struct ----------------------------------------------------------
 
 struct StringList::Node {
-    
+
     std::string str;
     Node *prev;
     Node *next;
@@ -119,7 +119,7 @@ protected:
     // list that the iterator points to
     std::string& retrieve() const;
 
-    
+
 public:
 
     // public constructor for iterator.  Must be explicitely provided because
@@ -145,7 +145,7 @@ public:
     // comparison operators
     bool operator==(const const_iterator& rhs) const;
     bool operator!=(const const_iterator& rhs) const;
-    
+
     // note: the `friend' declaration isn't introduced until section 12.3.2 page
     // 217.  It allows `StringList' to access the `StringList::const_iterator'
     // class's protected members.
@@ -163,12 +163,12 @@ public:
 class StringList::iterator : public StringList::const_iterator {
 
 protected:
-    
+
     // internal use constructor.  Expects a pointer that represents the current
     // position in the list.
     iterator(Node *p) : const_iterator(p) {}
 
-    
+
 public:
 
     // zero-parameter constructor.  Relies on the parent class constructor to

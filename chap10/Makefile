@@ -49,7 +49,7 @@ all : $(executables)
 utest : $(unit_tests) $(executables)
 
 # run all unit and system tests
-test : $(unit_targets) $(test_targets) 
+test : $(unit_targets) $(test_targets)
 
 clean :
 	rm -f *.o
@@ -89,8 +89,8 @@ print-%:
 exer10_01.o : grade.h median.h student_info_grade.h
 exer10_01 : grade.o student_info_grade.o
 
-exer10_07.o : string_list.h
-exer10_07 : string_list.o string_list_const_iter.o string_list_iter.o
+exer10_06.o : string_list.h
+exer10_06 : split.o string_list.o string_list_const_iter.o string_list_iter.o
 
 grade.o : median.h
 
@@ -102,7 +102,10 @@ string_list_const_iter.o : string_list.h
 
 string_list_iter.o : string_list.h
 
-# # unit testing build rules -----------------------------------------------------
+
+
+
+# unit testing build rules -----------------------------------------------------
 
 # unit tests linked against CppUnit need to be compiled using the C++11
 # standard, and the compiler needs to be informed where to find the header files
